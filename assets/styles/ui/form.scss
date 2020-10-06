@@ -1,0 +1,81 @@
+@import "assets/styles/variables";
+@import "assets/styles/mixins";
+
+.form__input {
+  box-sizing: border-box;
+  display: block;
+  padding: 16px;
+  padding-top: 13px;
+  padding-bottom: 14px;
+  width: 100%;
+
+  font-size: 14px;
+  line-height: 150%;
+
+  border: 1px solid map-get(map-get($color, "border"), "light");
+
+  transition: border-color map-get($duration, "hover");
+
+  &:hover,
+  &:focus,
+  &:active {
+    outline: none;
+  }
+
+  &:focus {
+    border-color: map-get(map-get($color, "border"), "mid");
+  }
+
+  &::placeholder {
+    color: #9f9f9f;
+    font: inherit;
+  }
+
+  &[type="search"] {
+    &::-ms-clear,
+    &::-ms-reveal {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+      display: none;
+    }
+  }
+}
+
+.form__label {
+  &--hidden {
+    @include visually-hidden;
+  }
+}
+
+.form__control {
+  flex-grow: 1;
+
+  &--paired {
+    .form__input {
+      border-right: none;
+    }
+  }
+}
+
+.form__btn {
+  padding-top: 13px;
+  padding-bottom: 14px;
+  min-width: 122px;
+  color: #ffffff;
+}
+
+.form__row {
+  display: flex;
+  width: 100%;
+
+  > * {
+    flex-shrink: 0;
+  }
+}

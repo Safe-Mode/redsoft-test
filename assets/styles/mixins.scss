@@ -6,3 +6,34 @@
   padding: 0 16px;
   max-width: map-get($device-width, "desktop");
 }
+
+@mixin reset-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+@mixin reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@mixin btn {
+  @include reset-link;
+
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0;
+  vertical-align: middle;
+  border: none;
+  cursor: pointer;
+  background: none;
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}

@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <h1>Ну, да, доставляем...</h1>
-  </div>
+  <main class="page-main">
+    <div class="page-main__wrapper">
+      <h1 class="page-title">Ну, да, доставляем...</h1>
+    </div>
+  </main>
 </template>
-
-<script lang="ts">
-export default {}
-</script>

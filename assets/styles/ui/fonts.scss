@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "Merriweather";
+  src: local("Merriweather Bold"),
+    local("Merriweather-Bold"),
+    url("~assets/fonts/subset-Merriweather-Bold.woff2") format("woff2"),
+    url("~assets/fonts/subset-Merriweather-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Merriweather";
+  src: local("Merriweather Light"),
+    local("Merriweather-Light"),
+    url("~assets/fonts/subset-Merriweather-Light.woff2") format("woff2"),
+    url("~assets/fonts/subset-Merriweather-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Merriweather";
+  src: local("Merriweather Regular"),
+    local("Merriweather-Regular"),
+    url("~assets/fonts/subset-Merriweather-Regular.woff2") format("woff2"),
+    url("~assets/fonts/subset-Merriweather-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

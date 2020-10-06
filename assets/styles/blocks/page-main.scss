@@ -1,0 +1,11 @@
+@import "../mixins";
+
+.page-main__wrapper {
+  @include container;
+}
+
+.page-main {
+  flex-grow: 1;
+  padding-top: 45px;
+  padding-bottom: 45px;
+}

@@ -15,14 +15,6 @@ export default Vue.extend({})
 </script>
 
 <style lang="scss">
-  @import "~normalize.css";
-  @import "assets/styles/mixins";
-
-  .page-main__wrapper {
-    @include container;
-  }
-
-  .page-main {
-    flex-grow: 1;
-  }
+  @import "assets/styles/blocks/page-title";
+  @import "assets/styles/blocks/page-main";
 </style>

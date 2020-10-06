@@ -1,1 +1,20 @@
 $device-width: ("desktop": 1280px, "mobile": 320px);
+$color: (
+  "primary": (
+    "dark": #403432,
+    "mid": #776763,
+    "light": #c1b4b1,
+    "vivid": #5b3a32
+  ),
+  "body": #f6f3f3,
+  "text": (
+    "dark": #343030,
+    "light": #f4f6f9
+  ),
+  "border": (
+    "light": #e1e1e1,
+    "mid": #b5b5b5
+  ),
+  "footer": #eceaea
+);
+$duration: ("hover": 0.2s);
