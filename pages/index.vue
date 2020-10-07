@@ -5,7 +5,7 @@
         Картины эпохи Возрождения
       </h1>
 
-      <section class="goods">
+      <section v-if="goods" class="goods">
         <ul class="goods__list">
           <li v-for="(product, i) in goods" :key="i" class="goods__item">
             <Product :product="product" />
@@ -20,46 +20,26 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  asyncData () {
-    const goods = [{
-      title: 'Рождение Венеры',
-      author: 'Сандро Боттичелли',
-      price: {
-        default: 2000000,
-        discount: 1000000
-      },
-      image: '/images/1.jpg',
-      isSoldOut: false
-    }, {
-      title: 'Тайная вечеря',
-      author: 'Леонардо да Винчи',
-      price: {
-        default: 3000000,
-        discount: null
-      },
-      image: '/images/2.jpg',
-      isSoldOut: false
-    }, {
-      title: 'Сотворение Адама',
-      author: 'Микеланджело',
-      price: {
-        default: 6000000,
-        discount: 5000000
-      },
-      image: '/images/3.jpg',
-      isSoldOut: false
-    }, {
-      title: 'Урок анатомии',
-      author: 'Рембрандт',
-      price: {
-        default: 6000000,
-        discount: 5000000
-      },
-      image: '/images/4.jpg',
-      isSoldOut: true
-    }]
-
+  async asyncData ({ app }) {
+    // Имитация запроса на сервер
+    const goods = await app.$axios
+      .get('/data/goods.json')
+      .then((response: any) => response.data)
     return { goods }
+  },
+  data () {
+    return {
+      goods: []
+    }
+  },
+  mounted () {
+    const goods = window.localStorage.getItem('goods')
+
+    if (goods) {
+      this.goods = JSON.parse(goods)
+    }
+
+    window.localStorage.setItem('goods', JSON.stringify(this.goods))
   }
 })
 </script>

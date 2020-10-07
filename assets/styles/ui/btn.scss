@@ -1,6 +1,11 @@
 @import "assets/styles/variables";
 @import "assets/styles/mixins";
 
+.btn__icon {
+  margin-right: 7px;
+  height: 9px;
+}
+
 .btn {
   @include btn;
 
@@ -23,5 +28,9 @@
   &:active {
     outline: none;
     background-color: map-get(map-get($color, "primary"), "mid");
+  }
+
+  &--active {
+    background-color: map-get(map-get($color, "primary"), "vivid");
   }
 }

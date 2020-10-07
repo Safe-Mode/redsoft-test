@@ -16,8 +16,13 @@
           <span v-if="product.price.discount" class="product__discount">{{ product.price.discount | currency }}</span>
         </div>
 
-        <button class="btn product__btn" type="submit">
+        <button v-if="!product.isInCart" class="btn product__btn" type="button" @click="onPutToCart">
           Купить
+        </button>
+
+        <button v-else type="button" class="btn btn--active product__btn">
+          <svg-icon name="check" width="13" heigth="9" class="btn__icon" />
+          В корзине
         </button>
       </div>
 
@@ -28,16 +33,43 @@
   </article>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue'
+
+const API_URL = 'https://jsonplaceholder.typicode.com/posts/1'
+
+export default Vue.extend({
   name: 'Product',
   props: {
     product: {
       type: Object,
       required: true
     }
+  },
+  data () {
+    return {
+      isLoading: false
+    }
+  },
+  methods: {
+    onPutToCart (): void {
+      this.isLoading = true
+
+      this.$axios.get(API_URL).then((response: any) => {
+        if (response.status === 200) {
+          const goods = JSON.parse((window.localStorage.getItem('goods') as string))
+          const productIndex = goods.findIndex((product: any) => product.id === this.product.id)
+
+          this.product.isInCart = true
+          goods[productIndex] = this.product
+          window.localStorage.setItem('goods', JSON.stringify(goods))
+        } else {
+          console.log(response.statusText)
+        }
+      })
+    }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>
@@ -56,7 +88,7 @@ export default {
 
     font-weight: 400;
     font-size: 18px;
-    line-height: 150%;
+    line-height: 27px;
   }
 
   .product__price {
