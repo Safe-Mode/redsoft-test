@@ -35,7 +35,8 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/svg-sprite'
+    '@nuxtjs/svg-sprite',
+    'vue-currency-filter/nuxt'
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -44,6 +45,16 @@ export default {
   svgSprite: {
     input: '~/assets/icons',
     output: '~/assets/icons/sprite'
+  },
+
+  currencyFilter: {
+    symbol: '$',
+    thousandsSeparator: ' ',
+    fractionCount: 0,
+    fractionSeparator: '.',
+    symbolPosition: 'back',
+    symbolSpacing: true,
+    avoidEmptyDecimals: undefined
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)

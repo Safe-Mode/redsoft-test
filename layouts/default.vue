@@ -17,6 +17,12 @@
     min-height: 100vh;
   }
 
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
   body {
     font-family: "Merriweather", "Times New Roman", serif;
     color: map-get(map-get($color, "text"), "dark");
