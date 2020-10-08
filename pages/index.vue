@@ -18,6 +18,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import LocalStorage from '~/services/storage.service'
 
 export default Vue.extend({
   async asyncData ({ app }) {
@@ -33,21 +34,19 @@ export default Vue.extend({
     }
   },
   mounted () {
-    const goods = window.localStorage.getItem('goods')
+    const goods = LocalStorage.getItem('goods')
 
     if (goods) {
-      this.goods = JSON.parse(goods)
+      this.goods = goods
     }
 
-    window.localStorage.setItem('goods', JSON.stringify(this.goods))
+    LocalStorage.setItem('goods', this.goods)
   }
 })
 </script>
 
 <style lang="scss">
   @import "assets/styles/mixins";
-  @import "assets/styles/blocks/page-title";
-  @import "assets/styles/blocks/page-main";
 
   .goods__item {
     margin: 16px;

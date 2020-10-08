@@ -28,4 +28,8 @@ export default {
   .search__form {
     width: 100%;
   }
+
+  .search {
+    width: 100%;
+  }
 </style>

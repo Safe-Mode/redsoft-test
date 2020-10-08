@@ -16,8 +16,14 @@
           <span v-if="product.price.discount" class="product__discount">{{ product.price.discount | currency }}</span>
         </div>
 
-        <button v-if="!product.isInCart" class="btn product__btn" type="button" @click="onPutToCart">
-          Купить
+        <button v-if="!product.isInCart" class="btn product__btn" type="button" :disabled="isLoading" @click="onPutToCart">
+          <template v-if="isLoading">
+            <Preloader :size="21" />
+          </template>
+
+          <template v-else>
+            Купить
+          </template>
         </button>
 
         <button v-else type="button" class="btn btn--active product__btn">
@@ -35,6 +41,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import LocalStorage from '~/services/storage.service'
 
 const API_URL = 'https://jsonplaceholder.typicode.com/posts/1'
 
@@ -57,12 +64,12 @@ export default Vue.extend({
 
       this.$axios.get(API_URL).then((response: any) => {
         if (response.status === 200) {
-          const goods = JSON.parse((window.localStorage.getItem('goods') as string))
+          const goods = LocalStorage.getItem('goods')
           const productIndex = goods.findIndex((product: any) => product.id === this.product.id)
 
           this.product.isInCart = true
           goods[productIndex] = this.product
-          window.localStorage.setItem('goods', JSON.stringify(goods))
+          LocalStorage.setItem('goods', goods)
         } else {
           console.log(response.statusText)
         }
@@ -128,6 +135,7 @@ export default Vue.extend({
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    max-width: 280px; // дичь для ie11
     min-height: 328px;
     border: 1px solid map-get(map-get($color, "border"), "light");
 
@@ -136,6 +144,8 @@ export default Vue.extend({
 
       .product__footer {
         margin: auto 0;
+        margin-top: 11px; // дичь для ie
+
         font-weight: 700;
         font-size: 16px;
         line-height: 150%;
